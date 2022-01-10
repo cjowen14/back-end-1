@@ -13,6 +13,11 @@
     <ul id="people" class=""></ul>
 
     <button id="button">GET Friends List</button>
+    <br>
+    <br>
+    <br>
+    <br>
+    <button id="random">GET Random Friend</button>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
@@ -32,6 +37,23 @@
               '<li class="text-danger">' + err.message + "</li>";
           });
       };
+
+      const randomFriend = document.querySelector("#random");
+
+      function randomFunc(){
+          axios
+          .get("http://localhost:4000/api/random")
+          .then(function(response){
+            const rando = response.data;
+            document.getElementById("randomSection").innerHTML = rando;
+          })
+      }
+
+      randomFriend.addEventListener("click", randomFunc);
+
     </script>
+    <br>
+    <h1>Random Friend</h1>
+    <h4 id="randomSection" style="color:blue"></h4>
   </body>
 </html>
